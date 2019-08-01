@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+/dist/
+/dist*
+.idea/*
+.vscode
+ins.js
+src/commom/utils/id.js
+ball.js
+allurl.js
+# src/commom/utils/identityCardNumbers.js
