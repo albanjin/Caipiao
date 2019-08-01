@@ -2,7 +2,7 @@
 const path = require('path')
 const {requestFunc} = require('./common/config/http.js')
 const {allUrl} = require('./allurl.js')
-const { createWriteStreamEnd } = require('./common/config/createWriteStreamEnd.js')
+// const { createWriteStreamEnd } = require('./common/config/createWriteStreamEnd.js')
 
-createWriteStreamEnd.emit('init_ball')
+// createWriteStreamEnd.emit('init_ball')
 requestFunc(allUrl[0])
