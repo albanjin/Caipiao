@@ -7,3 +7,6 @@ const { createWriteStreamEnd } = require('./common/config/createWriteStreamEnd.j
 
 createWriteStreamEnd.emit('init_ball')
 requestFunc(targetUrl,false)
+process.on('uncaughtException', (err) => {
+    console.log(1, `捕获的异常：${err}\n`);
+});

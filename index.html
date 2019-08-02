@@ -13,9 +13,25 @@
             flex-wrap: wrap;
         }
         .box>div{
-            width: 30%;
-            margin: 10px ;
+            width: 25%;
+            margin: 10px 0;
+            box-sizing: border-box;
+           
             /* flex-wrap: */
+        }
+        .blue-ball{
+            background: blue;
+            display: inline-block;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+        }
+        .red-ball {
+            background: red;
         }
     </style>
 
@@ -49,19 +65,50 @@ function blueballListFunc (blueballList,buleball =  'buleball'){
 
 var blueballResultList = blueballListFunc(blueballList)
 var redballResultList = blueballListFunc(redballList,'redball')
+
+var blueballResultRate = blueballResultList.map((item,index) => {
+    return {rate:Math.floor(item * 10000 / bull.length ) / 100,index:`${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}`,count:item}
+})
+
+var redballResultRate = redballResultList.map((item,index) => {
+    return {rate:Math.floor(item * 10000 / bull.length ) / 100,index:`${index + 1 >= 10 ? index + 1 : '0' + (index + 1)}`,count:item}
+})
  
-console.log(blueballResultList)
-console.log(redballResultList)
+console.log(blueballResultRate)
+
+var blueballResultRateSort = blueballResultRate.sort((a,b)=>{ return a['rate'] - b['rate']}).reverse()
+var redballResultRateSort = redballResultRate.sort((a,b)=>{ return a['rate'] - b['rate']}).reverse()
+console.log(blueballResultRateSort)
+console.log(redballResultRateSort)
 
 var html = ''
 
-for(var i = 0 ; i < blueballResultList.length; i ++){
-    html += `<div> 篮球${blueballList[i]} 共出现 ${blueballResultList[i]} 占 ${ Math.floor(blueballResultList[i] * 10000 / bull.length ) / 100 }%</div>`
-}
+// for(var i = 0 ; i < redballResultRateSort.length; i ++){
 
-for(var i = 0 ; i < redballResultList.length; i ++){
-    html += `<div> 红球${redballList[i]} 共出现 ${redballResultList[i]} 占 ${ Math.floor(redballResultList[i] * 10000 / bull.length ) / 100 }%</div>`
-}
+//     //  blueballResultRate.filter((item,index) => {
+//     //     // console.log(item)
+//     //     if(blueballResultRateSort[i] == item){
+//     //         html += `<div> 篮球${blueballList[index]} 共出现${blueballResultList[index]} ${ item}%</div>`
+//     //     } 
+        
+//     // })
+// }
+
+var h = blueballResultRateSort.map((a) => {
+    return `<div> <span class="blue-ball">${a['index']}</span> 共出现 ${a['count']} 占 ${a['rate']}%</div>`  
+})
+
+// for(var i = 0 ; i < redballResultList.length; i ++){
+//     html += `<div> 红球${redballList[i]} 共出现 ${redballResultList[i]} 占 ${ Math.floor(redballResultList[i] * 10000 / bull.length ) / 100 }%</div>` 
+// }
+
+var r = redballResultRateSort.map((a) => {
+    return `<div> <span class="blue-ball red-ball">${a['index']}</span> 共出现 ${a['count']} 占 ${a['rate']}%</div>`  
+})
+html = h.concat(r).join('')
+
+console.log(html)
+
 
 document.querySelectorAll('.box')[0].innerHTML = html
     </script>
