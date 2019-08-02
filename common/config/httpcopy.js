@@ -24,14 +24,17 @@ const requestFunc = (targetUrl,canSetHtml = true) => {
     let UserAgentIndex = Math.floor(Math.random() * UserAgentList.length )
 
     const config = {
-        ...url.parse(targetUrl),
+        // ...url.parse(targetUrl),
         headers: {
             "Accept": " text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
             "Accept-Encoding": "gzip, deflate",
             "Content-Type": "text/html; charset=gb2312",
             "User-Agent": UserAgentList[UserAgentIndex]
             // "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36",
-        }
+        },
+        host:'13.228.147.135',
+        port:'3128',
+        path:targetUrl
     }
     
     const request = http.get(config)
@@ -60,7 +63,7 @@ const requestFunc = (targetUrl,canSetHtml = true) => {
             html+=data;
         });
         output.on('end',()=>{
-            // console.log(html);
+            console.log(html);
             if(canSetHtml)
                 createWriteStreamEnd.emit('sethtml',html)
             else
