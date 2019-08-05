@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build":"node init.js",
-    "postbuild":"node index.js"
+    "build": "node init.js",
+    "postbuild": "node index.js"
   },
   "keywords": [],
   "author": "",
